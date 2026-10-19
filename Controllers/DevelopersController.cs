@@ -25,4 +25,14 @@ public class DevelopersController : ControllerBase
     {
         return _db.Find(d => d.Id == id);
     }
+
+    [HttpPost]
+    public IActionResult CreateNewDeveloper(Developer developerToAdd)
+    {
+        var nextId = _db.Count + 1;
+        developerToAdd.Id = nextId;
+        _db.Add(developerToAdd);
+
+        return CreatedAtAction(nameof(GetDeveloperById), new { id = nextId }, developerToAdd);
+    }
 }
