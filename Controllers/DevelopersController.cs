@@ -19,4 +19,9 @@ public class DevelopersController : ControllerBase
     {
         return _db;
     }
+
+    public Developer? GetDeveloperById(int id)
+    {
+        return _db.Find(d => d.Id == id);
+    }
 }
