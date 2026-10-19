@@ -43,7 +43,7 @@ public class Db
 {
     public Db()
     {
-        DevelopersController = new List<Developer>()
+        Developers = new List<Developer>()
         {
             new Developer{
             Id = 1, 
