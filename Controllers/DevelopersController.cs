@@ -17,15 +17,36 @@ public class DevelopersController : ControllerBase
     }
     
     [HttpGet]
-    public List<Developer> GetAllDevs()
+    public List<DeveloperResponse> GetAllDevs()
     {
-        return _db.Developers;
+        var developerResponseList = new List<DeveloperResponse>();
+
+        foreach (var developer in _db.Developers)
+        {
+            developerResponseList.Add(new DeveloperResponse{
+                Id = developer.Id,
+                Name = developer.Name,
+                Email = developer.Email
+            });
+        }
+        return developerResponseList;
     }
 
     [HttpGet("{id}")]
-    public Developer? GetDeveloperById(int id)
+    public DeveloperResponse? GetDeveloperById(int id)
     {
-        return _db.Developers.Find(d => d.Id == id);
+        var foundDeveloper = _db.Developers.Find(d => d.Id == id);
+
+        if (foundDeveloper is null)
+        {
+            return null;
+        }
+
+        return new DeveloperResponse{
+            Id = foundDeveloper.Id,
+            Name = foundDeveloper.Name,
+            Email = foundDeveloper.Email
+        };
     }
 
     [HttpPost]
@@ -51,7 +72,7 @@ public class CreateDeveloperRequest
     public string? Email { get; set; }
 }
 
-public class CreateDeveloperResponse
+public class DeveloperResponse
 {
     public int Id { get; set;}
     public string? Name { get; set; }
