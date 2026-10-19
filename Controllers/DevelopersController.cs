@@ -29,10 +29,15 @@ public class DevelopersController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateNewDeveloper(Developer developerToAdd)
+    public IActionResult CreateNewDeveloper(CreateDeveloperRequest request)
     {
         var nextId = _db.Developers.Count + 1;
-        developerToAdd.Id = nextId;
+        var developerToAdd = new Developer()
+        {
+            Id = nextId,
+            Name = request.Name,
+            Email = request.Email
+        };
         _db.Developers.Add(developerToAdd);
 
         return CreatedAtAction(nameof(GetDeveloperById), new { id = nextId }, developerToAdd);
