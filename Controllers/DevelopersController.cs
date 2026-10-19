@@ -2,6 +2,7 @@ using System.Data.Common;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Mvc;
 using webapiDotNetTrainingGround.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace webapiDotNetTrainingGround.Controllers;
 
@@ -68,7 +69,9 @@ public class DevelopersController : ControllerBase
 
 public class CreateDeveloperRequest
 {
+    [Required]
     public string? Name { get; set; }
+    [Required]
     public string? Email { get; set; }
 }
 
