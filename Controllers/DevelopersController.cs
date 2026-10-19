@@ -12,6 +12,17 @@ public class DevelopersController : ControllerBase
     public DevelopersController()
     {
         _db = new List<Developer>();
+
+        _db.Add(new Developer{
+            Id = 1, 
+            Name = "Stefan",
+            Email = "Stefan@gmail.com"
+        });
+        _db.Add(new Developer{
+            Id = 2, 
+            Name = "Malin",
+            Email = "Malin123@gmail.com"
+        });
     }
     
     [HttpGet]
