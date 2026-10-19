@@ -72,6 +72,7 @@ public class CreateDeveloperRequest
     [Required]
     public string? Name { get; set; }
     [Required(ErrorMessage = "The 'Email' needs to be supplied in the request body")]
+    [EmailAddress(ErrorMessage = "Invalid Email adress")]
     public string? Email { get; set; }
 }
 
