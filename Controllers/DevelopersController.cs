@@ -38,6 +38,7 @@ public class DevelopersController : ControllerBase
             Name = request.Name,
             Email = request.Email
         };
+        
         _db.Developers.Add(developerToAdd);
 
         return CreatedAtAction(nameof(GetDeveloperById), new { id = nextId }, developerToAdd);
@@ -46,6 +47,13 @@ public class DevelopersController : ControllerBase
 
 public class CreateDeveloperRequest
 {
+    public string? Name { get; set; }
+    public string? Email { get; set; }
+}
+
+public class CreateDeveloperResponse
+{
+    public int Id { get; set;}
     public string? Name { get; set; }
     public string? Email { get; set; }
 }
